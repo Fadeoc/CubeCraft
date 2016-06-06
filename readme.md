@@ -3,7 +3,7 @@
 version: 0.1.1.0004
 
 Function Lists:
-*textareaClipping: limit the amout of chars user could input.
+* textareaClipping: limit the amout of chars user could input.
 
 ###1. textareaLimiting
 
