@@ -4,8 +4,8 @@
 //          lengthLimit -> chars length to limit, omit granted with default value 50000 chars.
 function textareaClipping(textareaId, lengthLimit = 50000)
 {
-    var textarea = document.getElementById(textareaId);
-    if (textarea)
+    var textarea = document.getElementById(textareaId) || "";
+    if (textarea !== "")
     {
         var len = lengthLimit;
         function limitChars()
