@@ -2,10 +2,11 @@
 
 version: 0.1.1.0006
 
-Function Lists:\
+Function Lists:
+* (chrome | ie8-ie11 )copyToClipboard: to copy text into clipboard.
 * ensureObjectProperty: to ensure object has property in deep layer.
 * mapUrlParams: to convert url params into map.
-* textareaLimiting: limit the amout of chars user could input.
+* textareaLimiting: to limit the amout of chars user could input.
 
 ###1. textareaLimiting
 
