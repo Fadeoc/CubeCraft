@@ -1,4 +1,4 @@
-var ensureObjectProperty = function(getPropStr, getFromObj) {
+var ensureObjectProperty = function(getPropStr, getFromObj, varInProp) {
 	//type error
 	if (typeof getPropStr !== 'string') {
 		return false;
@@ -8,7 +8,8 @@ var ensureObjectProperty = function(getPropStr, getFromObj) {
 		return false;
 	}
 	//convert all property chain into Array
-	var testDotArr = getPropStr.replace(new RegExp(/\[/, 'g'), '.').replace(new RegExp(/\]/, 'g'), '').split('.');
+	var x = getPropStr.replace(/'/g, '').replace(/"/g, '').replace(new RegExp(/\[/, 'g'), '.');
+	var testDotArr = getPropStr.replace(/'/g, '').replace(/"/g, '').replace(new RegExp(/\[/, 'g'), '.').replace(new RegExp(/\]/, 'g'), '').split('.');
 	//dealing via length of Array
 	var testDotArrLength = testDotArr.length;
 	//no property was sent
@@ -16,14 +17,21 @@ var ensureObjectProperty = function(getPropStr, getFromObj) {
 		return false;
 	}
 	//now let us begin :)
+	//get array from prop vars
+	var varInPropArr = Object.keys(varInProp);
 	var nowObj = getFromObj;
 	for (var i = 1; i < testDotArrLength; i++) {
 		var nowKey = testDotArr[i];
+		// if nowKey is variable, get it is value as realkey
+		if (varInPropArr.indexOf(nowKey) !== -1) {
+			nowKey = varInProp[nowKey];
+		}
 		if (nowObj !== null && nowObj.hasOwnProperty(nowKey)) {
 			if (i === testDotArrLength - 1) {
 				return true;
 			}
 			else {
+				//recursion like
 				nowObj = nowObj[nowKey];
 			}
 		}
@@ -32,6 +40,3 @@ var ensureObjectProperty = function(getPropStr, getFromObj) {
 		}
 	}
 };
-
-//enable this line below to test mod
-// export default ensureObjectProperty;
