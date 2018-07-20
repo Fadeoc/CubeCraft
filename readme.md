@@ -25,7 +25,7 @@ to convert url params into map
 to ensure object has property in deep layer, to avoid silly "can not read property of undefined".
 
 @params {String} getPropStr - whole string include obj, eg: to test if a has b as property, should be "a.b" or "a[b]".
-
-@return {object} getFromObj - obj to test, should be a as above example.
+@params {object} getFromObj - obj to test, should be a as above example.
+@params {object} varInProp - key {string}: vars in your getPropStr; val {any}: val of the key. eg: say you have an i in your getPropStr represents an i in iteration, send in {"i", i}, so the lib will recogonize the i in your getPropStr is a variable instead of a property string. 
 
 Test cases: 5
